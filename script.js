@@ -134,71 +134,9 @@ class JusticeWatch {
     }
     
     setupEventListeners() {
-        // View control buttons
-        document.getElementById('gridView').addEventListener('click', () => {
-            document.getElementById('gridView').classList.add('active');
-            document.getElementById('freeformView').classList.remove('active');
-        });
-        
-        document.getElementById('freeformView').addEventListener('click', () => {
-            document.getElementById('freeformView').classList.add('active');
-            document.getElementById('gridView').classList.remove('active');
-        });
-        
-        // Video thumbnail click handlers
-        this.setupVideoClickHandlers();
+        // Event listeners can be added here if needed
     }
     
-    setupVideoClickHandlers() {
-        const videoThumbnails = document.querySelectorAll('.video-thumbnail[data-video-id]');
-        
-        videoThumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', () => {
-                const videoId = thumbnail.getAttribute('data-video-id');
-                const location = thumbnail.getAttribute('data-location');
-                this.displayVideoInMainScreen(videoId, location);
-            });
-        });
-        
-        // Close video button handler
-        document.getElementById('closeVideoBtn').addEventListener('click', () => {
-            this.closeMainVideo();
-        });
-    }
-    
-    displayVideoInMainScreen(videoId, location) {
-        const mainVideoEmbed = document.getElementById('mainVideoEmbed');
-        const mainVideoIframe = document.getElementById('mainVideoIframe');
-        const mainLocationTag = document.getElementById('mainLocationTag');
-        const mainVideoPlaceholder = document.getElementById('mainVideoPlaceholder');
-        
-        // Update the iframe source
-        mainVideoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}`;
-        
-        // Update the location tag
-        mainLocationTag.textContent = `${location} - LIVE NEWS`;
-        
-        // Hide placeholder and show video
-        mainVideoPlaceholder.style.display = 'none';
-        mainVideoEmbed.style.display = 'block';
-        
-        console.log(`Displaying ${location} video in main screen`);
-    }
-    
-    closeMainVideo() {
-        const mainVideoEmbed = document.getElementById('mainVideoEmbed');
-        const mainVideoIframe = document.getElementById('mainVideoIframe');
-        const mainVideoPlaceholder = document.getElementById('mainVideoPlaceholder');
-        
-        // Stop the video by clearing the iframe source
-        mainVideoIframe.src = '';
-        
-        // Hide video and show placeholder
-        mainVideoEmbed.style.display = 'none';
-        mainVideoPlaceholder.style.display = 'flex';
-        
-        console.log('Closed main video, returned to placeholder');
-    }
     
     updateTime() {
         const now = new Date();
