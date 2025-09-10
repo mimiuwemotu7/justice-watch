@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justice Watch - Monitoring Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="logo">
+                <span class="logo-text">JUSTICE WATCH</span>
+            </div>
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span class="live-text">LIVE</span>
+            </div>
+            <div class="news-ticker">
+                <div class="ticker-content" id="tickerContent">
+                    Loading news feeds...
+                </div>
+            </div>
+            <div class="viewer-count">
+                <span class="viewer-dot"></span>
+                <span id="viewerCount">1 VIEWER</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Panel - News Feed -->
+            <aside class="news-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">📰</span>
+                    <span class="panel-title">LATEST NEWS</span>
+                </div>
+                <div class="news-list" id="newsList">
+                    <!-- News items will be populated here -->
+                </div>
+            </aside>
+
+            <!-- Center Panel - Video/Main Content -->
+            <section class="main-panel">
+                <div class="live-indicator-small">
+                    <span class="live-dot-small"></span>
+                    <span>LIVE</span>
+                </div>
+                
+                <div class="main-video">
+                    <div class="video-placeholder" id="mainVideoPlaceholder">
+                        <div class="placeholder-icon">⚖️</div>
+                        <div class="placeholder-text">Justice Watch Monitoring Center</div>
+                        <div class="placeholder-subtext">Real-time surveillance of injustice</div>
+                    </div>
+                    <div class="main-youtube-embed" id="mainVideoEmbed" style="display: none;">
+                        <iframe id="mainVideoIframe" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        <div class="main-video-controls">
+                            <button class="close-video-btn" id="closeVideoBtn">✕</button>
+                            <span class="main-location-tag" id="mainLocationTag"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-grid">
+                    <div class="video-thumbnail" data-video-id="oRu36EcL-gA" data-location="WASHINGTON DC">
+                        <div class="youtube-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/oRu36EcL-gA?autoplay=1&mute=1&loop=1&playlist=oRu36EcL-gA" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                            <span class="location-tag">WASHINGTON DC - LIVE NEWS</span>
+                        </div>
+                    </div>
+                    <div class="video-thumbnail" data-video-id="8xGwBG-HDkw" data-location="NEW YORK">
+                        <div class="youtube-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/8xGwBG-HDkw?autoplay=1&mute=1&loop=1&playlist=8xGwBG-HDkw" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                            <span class="location-tag">NEW YORK - LIVE NEWS</span>
+                        </div>
+                    </div>
+                    <div class="video-thumbnail" data-video-id="CKovFgzhQoo" data-location="LOS ANGELES">
+                        <div class="youtube-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/CKovFgzhQoo?autoplay=1&mute=1&loop=1&playlist=CKovFgzhQoo" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                            <span class="location-tag">LOS ANGELES - LIVE NEWS</span>
+                        </div>
+                    </div>
+                    <div class="video-thumbnail" data-video-id="Ydj-v40Md2o" data-location="CHICAGO">
+                        <div class="youtube-embed">
+                            <iframe 
+                                src="https://www.youtube.com/embed/Ydj-v40Md2o?autoplay=1&mute=1&loop=1&playlist=Ydj-v40Md2o" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                            <span class="location-tag">CHICAGO - LIVE NEWS</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- Bottom Bar -->
+        <footer class="bottom-bar">
+            <div class="status-info">
+                <span class="system-info">JUSTICE WATCH OPS INTERFACE V1.0</span>
+                <span class="monitor-code">MONITOR CODE: US/CRIME/CORRUPTION 00XX</span>
+                <span class="feeds-active" id="feedsActive">4 FEEDS ACTIVE</span>
+            </div>
+            
+            <div class="view-controls">
+                <button class="view-btn active" id="gridView">Grid View</button>
+                <button class="view-btn" id="freeformView">Freeform View</button>
+            </div>
+            
+            <div class="connection-status">
+                <button class="control-btn">X</button>
+                <button class="control-btn">Copy CA</button>
+                <span class="connected-status">
+                    <span class="status-icon">✓</span>
+                    <span>CONNECTED</span>
+                </span>
+                <span class="time-display" id="timeDisplay">10:28:19 PM</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
