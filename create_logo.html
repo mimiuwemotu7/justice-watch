@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Justice Watch Logo</title>
+</head>
+<body>
+    <canvas id="logoCanvas" width="40" height="40" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="downloadLogo()">Download as PNG</button>
+    
+    <script>
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Create gradient
+        const gradient = ctx.createLinearGradient(0, 0, 40, 40);
+        gradient.addColorStop(0, '#00ff00');
+        gradient.addColorStop(1, '#00cc00');
+        
+        // Draw circle background
+        ctx.beginPath();
+        ctx.arc(20, 20, 18, 0, 2 * Math.PI);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Draw checkmark
+        ctx.beginPath();
+        ctx.moveTo(12, 20);
+        ctx.lineTo(18, 26);
+        ctx.lineTo(28, 14);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+        
+        // Draw center dot
+        ctx.beginPath();
+        ctx.arc(20, 20, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        function downloadLogo() {
+            const link = document.createElement('a');
+            link.download = 'logo.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
