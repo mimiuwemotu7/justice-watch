@@ -284,7 +284,6 @@ class JusticeWatch {
         const sources = [
             { name: 'BBC News', url: 'https://feeds.bbci.co.uk/news/rss.xml' },
             { name: 'CNN', url: 'https://rss.cnn.com/rss/edition.rss' },
-            { name: 'Reuters', url: 'https://feeds.reuters.com/reuters/topNews' },
             { name: 'Fox News', url: 'https://feeds.foxnews.com/foxnews/latest' },
             { name: 'NPR', url: 'https://feeds.npr.org/1001/rss.xml' }
         ];
@@ -510,7 +509,57 @@ class JusticeWatch {
 
     setupEventListeners() {
         // Add any additional event listeners here
+        this.setupCopyButton();
         console.log('Event listeners setup complete');
+    }
+
+    setupCopyButton() {
+        const copyBtn = document.getElementById('copyCaBtn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                this.copyToClipboard();
+            });
+        }
+    }
+
+    async copyToClipboard() {
+        try {
+            // Copy some relevant text to clipboard (you can customize this)
+            const textToCopy = 'Justice Watch - Monitoring justice-related news feeds, hate crimes, corruption, and mass shootings in America.';
+            
+            await navigator.clipboard.writeText(textToCopy);
+            this.showToast('CA COPIED');
+            console.log('Text copied to clipboard:', textToCopy);
+        } catch (error) {
+            console.error('Failed to copy to clipboard:', error);
+            // Fallback for older browsers
+            this.fallbackCopyToClipboard();
+        }
+    }
+
+    fallbackCopyToClipboard() {
+        const textArea = document.createElement('textarea');
+        textArea.value = 'Justice Watch - Monitoring justice-related news feeds, hate crimes, corruption, and mass shootings in America.';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        this.showToast('CA COPIED');
+    }
+
+    showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        
+        if (toast && toastMessage) {
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Hide toast after 2 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
     }
 }
 
